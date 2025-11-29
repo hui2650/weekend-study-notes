@@ -1,0 +1,134 @@
+/* 전체 스타일 */
+* {
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  height: 100vh;
+  background: url('https://koritic.maniaro.kr/images/body_bg.gif ');
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
+/* 전체 넓이 최소 600px로 고정 */
+section.login-container {
+  min-width: 600px;
+}
+section.login-container h1 {
+  width: auto;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 8px 8px 24px;
+}
+.mode-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+.mode-item {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ddd;
+}
+.mode-item > p {
+  color: #212529;
+}
+.mode-item:last-child {
+  border: none;
+}
+
+/* 선택된요소  스타일링 */
+.mode-item.selected {
+  position: relative;
+  background-color: #fff8d2;
+}
+.mode-item.selected::before {
+  /* 가상요소로 border 스타일 잡음*/
+  content: '';
+  position: absolute;
+  inset: -2px; /* top, right, bottom, left 모두 -2px => 바깥으로 2px 확장 */
+  border: 2px solid #dc3545; /* 바깥쪽에 보이는 테두리 */
+}
+.mode-item.selected::after {
+  /* 가상요소로 선택된 박스 밑에 빨간테두리 가림 */
+  content: '';
+  width: 100%;
+  height: 3px;
+  background: #fff8d2;
+  position: absolute;
+  bottom: -3px;
+}
+/* 첫번째랑 마지막 테두리 선 안맞아서 inset 조정 */
+.mode-item:first-child::before {
+  inset: -2px -2px -2px -1px;
+}
+.mode-item:first-child::after {
+  width: calc(100% - 1px);
+  left: 1px;
+}
+.mode-item:last-child::before {
+  inset: -2px -1px -2px -2px;
+}
+.mode-item:last-child::after {
+  width: calc(100% - 1px);
+  right: 1px;
+}
+/* 하단 로그인 박스 스타일링 */
+.login-area {
+  border: 2px solid #dc3545; /* 바깥쪽에 보이는 테두리 */
+}
+.login-form {
+  padding: 8px;
+  background: #fff8d2;
+}
+.login-form input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 3px;
+  border: 1px solid #ced4da;
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #212529;
+  outline: none;
+}
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+/* 버튼 스타일링 */
+.btn {
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn-join {
+  background: #198754;
+}
+.btn-join.with {
+  border-radius: 3px 0px 0px 3px;
+}
+.btn-find {
+  background: #dc3545;
+}
+.btn-find.with {
+  position: relative;
+  left: -4px;
+  border-radius: 0px 3px 3px 0;
+}
+.btn-login {
+  background: #0d6efd;
+}

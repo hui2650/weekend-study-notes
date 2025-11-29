@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코리아IT아카데미학원 인천</title>
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <section class="login-container">
+      <h1>코리아IT아카데미학원 인천</h1>
+      <div class="mode-row">
+        <a href="./staff.html" class="mode-item">
+          <div class="mode-icon">
+            <img src="https://koritic.maniaro.kr/images/bg_staff.png" alt="" />
+          </div>
+          <p>행정모드</p>
+        </a>
+        <a href="teacher.html" class="mode-item selected">
+          <div class="mode-icon">
+            <img
+              src="https://koritic.maniaro.kr/images/bg_teacher.png"
+              alt=""
+            />
+          </div>
+          <p>강사모드</p>
+        </a>
+        <a href="./student.html" class="mode-item">
+          <div class="mode-icon">
+            <img
+              src="https://koritic.maniaro.kr/images/bg_student.png"
+              alt=""
+            />
+          </div>
+          <p>훈련생모드</p>
+        </a>
+        <a href="./seval.html" class="mode-item">
+          <div class="mode-icon">
+            <img src="https://koritic.maniaro.kr/images/bg_seval.png" alt="" />
+          </div>
+          <p>이수자평가</p>
+        </a>
+      </div>
+
+      <div class="login-area">
+        <form class="login-form" method="post" action="">
+          <div class="form-row">
+            <input
+              type="text"
+              name="user_id"
+              placeholder="아이디를 입력하세요"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <input
+              type="password"
+              name="user_pw"
+              placeholder="비밀번호를 입력하세요"
+              required
+            />
+          </div>
+
+          <div class="form-actions">
+            <div class="actions-left">
+              <button type="button" class="btn btn-join with">강사가입</button>
+              <button type="button" class="btn btn-find with">
+                <!--이건 다 공통-->
+                아이디/비밀번호찾기
+              </button>
+            </div>
+            <button type="submit" class="btn btn-login">로그인</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>
