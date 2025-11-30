@@ -1,0 +1,170 @@
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.modal.join {
+  display: none;
+}
+.modal-container.join {
+  min-width: 1110px;
+}
+.modal-header {
+  background: #212529;
+  padding: 28px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h3,
+.modal-header span {
+  color: #fff;
+}
+.modal-header > .close {
+  font-size: 20px;
+  cursor: pointer;
+}
+/* 회원가입 절차 리스트 */
+ul.modal-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2칸, 50:50 */
+}
+ul.modal-list li {
+  grid-column: 1 / -1;
+  display: flex;
+  border-bottom: 1px solid #dee2e6;
+}
+ul.modal-list > li.field-2col {
+  grid-column: auto; /* 자동 배치 (한 칸만) */
+  border-right: 1px solid #dee2e6;
+}
+ul.modal-list li > .modal-title {
+  width: 165px;
+  height: auto;
+  flex-shrink: 0;
+  background: #e9e9e9;
+  color: #313131;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.modal-content-inner {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.modal-content-inner.col {
+  flex-direction: column;
+  justify-content: center;
+}
+input#password.pwd-wraning {
+  border: 1px solid hsl(354, 70%, 54%);
+}
+.pwd-warning-text {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 10px 0 8px;
+  color: #dc3545;
+}
+.modal-content-inner input {
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  outline: none;
+}
+.input-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.input-group input[type='text'] {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.input-group > #id {
+  flex: 40%;
+}
+.input-group > .id-check {
+  flex: 60%;
+  padding: 6px 12px;
+  color: #dc3545;
+  font-weight: 700;
+}
+.input-group > .id-check.vaild {
+  color: #198754;
+}
+.modal-content-inner > .gender-check {
+  width: 15px;
+  height: 15px;
+  margin-right: 6px;
+}
+.modal-content-inner > label[for='gender-m'] {
+  margin-right: 10px;
+}
+.modal-content-inner > .gender-check:checked {
+  background-color: #0d6efd;
+}
+.modal-content-inner > textarea {
+  width: 100%;
+  height: 150px;
+  outline: none;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+.modal-text {
+  background: #e9ecef;
+  color: #212529;
+  padding: 6px 12px;
+  border: 1px solid #ced4da;
+  font-size: 14px;
+}
+.policy-check {
+  display: flex;
+  justify-content: center;
+}
+.policy-check > input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+}
+.input-group > select {
+  flex: 1 1 0;
+  outline: none;
+  border: 1px solid #ced4da;
+}
+
+.modal-fot {
+  background: #fff8d2;
+  padding: 8px;
+  text-align: right;
+}
+.modal-fot > .btn {
+  background: #0d6efd;
+}
+
+/*아이디/비밀번호 찾기 영역*/
+.modal.find {
+  display: none;
+}
+.modal-container.find {
+  max-width: 500px;
+}
