@@ -93,7 +93,7 @@ input#password.pwd-wraning {
   justify-content: space-between;
   overflow: hidden;
 }
-.input-group input[type='text'] {
+.input-group input[type="text"] {
   flex: 1 1 0;
   min-width: 0;
 }
@@ -106,7 +106,7 @@ input#password.pwd-wraning {
   color: #dc3545;
   font-weight: 700;
 }
-.input-group > .id-check.vaild {
+.input-group > .id-check.valid {
   color: #198754;
 }
 .modal-content-inner > .gender-check {
@@ -114,7 +114,7 @@ input#password.pwd-wraning {
   height: 15px;
   margin-right: 6px;
 }
-.modal-content-inner > label[for='gender-m'] {
+.modal-content-inner > label[for="gender-m"] {
   margin-right: 10px;
 }
 .modal-content-inner > .gender-check:checked {
@@ -141,7 +141,7 @@ input#password.pwd-wraning {
   display: flex;
   justify-content: center;
 }
-.policy-check > input[type='checkbox'] {
+.policy-check > input[type="checkbox"] {
   width: 15px;
   height: 15px;
   margin-right: 8px;
