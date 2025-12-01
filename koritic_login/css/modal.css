@@ -127,7 +127,7 @@ input#password.pwd-wraning {
   border: 1px solid #ced4da;
   border-radius: 8px;
   margin-bottom: 8px;
-  padding: 6px 12px;
+  padding: 16px 40px;
   flex-shrink: 0;
 }
 .modal-text {
