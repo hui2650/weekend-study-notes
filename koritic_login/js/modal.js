@@ -24,7 +24,6 @@ const openModal = (modal, container) => {
     ease: "power2.out",
   });
 };
-
 // 공통: 모달 닫기
 const closeModal = (modal) => {
   modal.style.display = "none";

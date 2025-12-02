@@ -62,11 +62,13 @@ form.pw.addEventListener("input", () => {
   const value = form.pw.value.trim();
 
   if (pwPattern.test(value)) {
-    //통과
+    // 통과
     pwdCheck.classList.add("hidden");
+    form.pw.classList.remove("pwd-wraning");
   } else {
-    //실패
+    // 실패
     pwdCheck.classList.remove("hidden");
+    form.pw.classList.add("pwd-wraning");
   }
 });
 
@@ -76,9 +78,13 @@ form.pwConfirm.addEventListener("input", () => {
   const pwConfirm = form.pwConfirm.value.trim();
 
   if (pw !== pwConfirm) {
+    // 불일치
     pwdConfirmCheck.classList.remove("hidden");
+    form.pwConfirm.classList.add("pwd-wraning");
   } else {
+    // 일치
     pwdConfirmCheck.classList.add("hidden");
+    form.pwConfirm.classList.remove("pwd-wraning");
   }
 });
 
