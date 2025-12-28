@@ -13,7 +13,6 @@ const mockData = [
     date: new Date().getTime(),
   },
 ]
-
 function reducer(state, action) {
   switch (action.type) {
     case 'CREATE':
@@ -36,7 +35,6 @@ function App() {
   const idRef = useRef(3)
 
   const onCreate = (content) => {
-    // 새로운 투두 데이터
     dispatch({
       type: 'CREATE',
       data: {
