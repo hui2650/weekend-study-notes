@@ -4,23 +4,24 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.5); /* 배경 투명도로 조금 어둡게 */
 }
 .modal-container {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); /* 포지션으로 가운데 정렬함 */
   background: #fff;
   border-radius: 8px;
   overflow: hidden;
 }
 .modal.join {
-  display: none;
+  display: none; /* 기본상태: display:none */
 }
 .modal-container.join {
-  min-width: 1110px;
+  min-width: 1100px; /* 최소넓이 1100px */
 }
+/* 모달 헤더부분 */
 .modal-header {
   background: #212529;
   padding: 28px 16px;
@@ -32,6 +33,7 @@
 .modal-header span {
   color: #fff;
 }
+/* 닫기 버튼 */
 .modal-header > .close {
   font-size: 20px;
   cursor: pointer;
@@ -46,14 +48,16 @@ ul.modal-list li {
   display: flex;
   border-bottom: 1px solid #dee2e6;
 }
+/* li.field-2col 부분만 자동 배치해서 레이아웃이 반반 비율로 나뉘어지게 함 (나머진 1줄)*/
 ul.modal-list > li.field-2col {
   grid-column: auto; /* 자동 배치 (한 칸만) */
   border-right: 1px solid #dee2e6;
 }
+/* 각 제목들은 넓이고정 */
 ul.modal-list li > .modal-title {
   width: 165px;
   height: auto;
-  flex-shrink: 0;
+  flex-shrink: 0; /* 항상 고정넓이 */
   background: #e9e9e9;
   color: #313131;
   display: flex;
@@ -63,16 +67,17 @@ ul.modal-list li > .modal-title {
 }
 .modal-content-inner {
   flex: 1;
-  min-width: 0;
   padding: 8px;
   display: flex;
   align-items: center;
 }
+/* col 클래스 있는 부분만 방향 column으로 */
 .modal-content-inner.col {
   flex-direction: column;
   justify-content: center;
 }
-input#password.pwd-wraning {
+/* 비밀번호 유효성 검사시 만족하지 않으면 border색 변경 */
+#user-pw.pwd-wraning {
   border: 1px solid hsl(354, 70%, 54%);
 }
 .pwd-warning-text {
@@ -87,49 +92,32 @@ input#password.pwd-wraning {
   border: 1px solid #ced4da;
   outline: none;
 }
+/* input을 감싼 input-group */
 .input-group {
   width: 100%;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
 }
-.input-group input[type='text'] {
+.input-group input[type="text"] {
   flex: 1 1 0;
   min-width: 0;
 }
 .input-group > #id {
   flex: 40%;
 }
+/* 아이디가 유효하지 않을때 기본 스타일 설정 */
 .input-group > .id-check {
   flex: 60%;
   padding: 6px 12px;
   color: #dc3545;
   font-weight: 700;
 }
-.input-group > .id-check.vaild {
+/* 아이디가 유효하면 글씨색만 변경 */
+.input-group > .id-check.valid {
   color: #198754;
 }
-.modal-content-inner > .gender-check {
-  width: 15px;
-  height: 15px;
-  margin-right: 6px;
-}
-.modal-content-inner > label[for='gender-m'] {
-  margin-right: 10px;
-}
-.modal-content-inner > .gender-check:checked {
-  background-color: #0d6efd;
-}
-.modal-content-inner > textarea {
-  width: 100%;
-  height: 150px;
-  outline: none;
-  border: 1px solid #ced4da;
-  border-radius: 8px;
-  margin-bottom: 8px;
-  padding: 6px 12px;
-  flex-shrink: 0;
-}
+/* 아이디 조건부분, -, 년, 월, 일, @ 부분 */
 .modal-text {
   background: #e9ecef;
   color: #212529;
@@ -137,21 +125,45 @@ input#password.pwd-wraning {
   border: 1px solid #ced4da;
   font-size: 14px;
 }
-.policy-check {
-  display: flex;
-  justify-content: center;
-}
-.policy-check > input[type='checkbox'] {
+/* 성별 부분 */
+.modal-content-inner > .gender-check {
   width: 15px;
   height: 15px;
-  margin-right: 8px;
+  margin-right: 6px;
 }
+.modal-content-inner > label[for="gender-m"] {
+  margin-right: 10px;
+}
+.modal-content-inner > .gender-check:checked {
+  background-color: #0d6efd;
+}
+/* 이메일 선택부분 */
 .input-group > select {
   flex: 1 1 0;
   outline: none;
   border: 1px solid #ced4da;
 }
-
+/* 개인정보, 보안서약서 내용 */
+.modal-content-inner > textarea {
+  width: 100%;
+  height: 150px;
+  outline: none;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  padding: 16px 40px;
+  flex-shrink: 0;
+}
+.policy-check {
+  display: flex;
+  justify-content: center;
+}
+.policy-check > input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+}
+/* 맨 밑 바닥부분 */
 .modal-fot {
   background: #fff8d2;
   padding: 8px;
@@ -160,11 +172,10 @@ input#password.pwd-wraning {
 .modal-fot > .btn {
   background: #0d6efd;
 }
-
-/*아이디/비밀번호 찾기 영역*/
+/*아이디/비밀번호 찾기 영역 전체 넓이 외에는 나머지 스타일 전부 동일 */
 .modal.find {
-  display: none;
+  display: none; /* 기본상태: display:none */
 }
 .modal-container.find {
-  max-width: 500px;
+  max-width: 500px; /* 최대넓이 500px */
 }
