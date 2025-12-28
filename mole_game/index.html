@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>두더지 잡기 게임</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./game.js" defer></script>
+  </head>
+  <body>
+    <div class="game-container">
+      <!-- 점수판 (왼쪽 상단) -->
+      <div class="score-board">
+        <div class="score-label">잡은 두더지</div>
+        <div class="score-value" id="score">0</div>
+      </div>
+
+      <!-- 생명 (왼쪽 하단) -->
+      <div class="lives-container" id="lives">
+        <div class="heart"></div>
+        <div class="heart"></div>
+        <div class="heart"></div>
+      </div>
+
+      <!-- 컨트롤 버튼 (오른쪽 하단) -->
+      <div class="controls">
+        <button class="btn btn-end" id="endBtn" disabled>게임 종료</button>
+        <button class="btn btn-restart" id="restartBtn">다시 하기</button>
+      </div>
+
+      <!-- 게임판 (16개 구멍) -->
+      <div class="game-board" id="gameBoard">
+        <!-- 16개 구멍 생성 -->
+      </div>
+
+      <!-- 시작 안내 모달 -->
+      <div class="modal start" id="startModal">
+        <h1>두더지 잡기 🎮</h1>
+        <p>두더지를 클릭해서 잡으세요!</p>
+        <p class="sub-text">놓치면 생명이 줄어듭니다</p>
+      </div>
+
+      <!-- 게임오버 모달 -->
+      <div class="modal gameover hidden" id="gameoverModal">
+        <h1>게임 오버!</h1>
+        <p class="final-score">최종 점수: <span id="finalScore">0</span></p>
+        <p class="sub-text">다시 하기 버튼을 눌러주세요</p>
+      </div>
+
+      <!-- 게임클리어 모달 -->
+      <div class="modal clear hidden" id="clearModal">
+        <h1>게임 클리어! 🎉</h1>
+        <p class="final-score">최종 점수: <span id="clearScore">0</span></p>
+        <p class="sub-text">다시 하기 버튼을 눌러주세요</p>
+      </div>
+    </div>
+  </body>
+</html>

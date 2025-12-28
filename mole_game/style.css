@@ -1,0 +1,389 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+}
+
+.game-container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(to bottom, #87ceeb 0%, #90ee90 100%);
+  position: relative;
+  overflow: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g transform="rotate(-45 16 16)"><rect x="13" y="4" width="6" height="16" fill="%23654321" rx="1"/><rect x="8" y="18" width="16" height="10" fill="%23888" rx="2"/><rect x="8" y="18" width="16" height="3" fill="%23aaa"/></g></svg>')
+      16 16,
+    auto;
+}
+
+/* 점수판 스타일 */
+.score-board {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.score-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.score-value {
+  font-size: 48px;
+  font-weight: bold;
+  color: #ff6b35;
+}
+
+/* 생명 하트 스타일 */
+.lives-container {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 15px 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  gap: 10px;
+}
+
+.heart {
+  width: 35px;
+  height: 35px;
+  position: relative;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 18px;
+  height: 28px;
+  border-radius: 18px 18px 0 0;
+  background: #ff4444;
+}
+
+.heart::before {
+  left: 9px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+.heart.empty::before,
+.heart.empty::after {
+  background: #ddd;
+}
+
+/* 컨트롤 버튼 스타일 */
+.controls {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn {
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-end {
+  background: #ff4444;
+  color: white;
+}
+
+.btn-end:hover:not(:disabled) {
+  background: #ff2222;
+}
+
+.btn-end:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-restart {
+  background: #44ff44;
+  color: white;
+}
+
+.btn-restart:hover {
+  background: #22ff22;
+}
+
+/* 게임판 스타일 */
+.game-board {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(34, 139, 34, 0.3);
+  padding: 30px;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: repeat(4, 100px);
+  gap: 30px;
+}
+
+.hole-container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+/* 구멍 스타일 */
+.hole {
+  width: 100px;
+  height: 50px;
+  background: radial-gradient(
+    ellipse at center,
+    #2c1810 0%,
+    #1a0f0a 70%,
+    #000 100%
+  );
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  box-shadow: inset 0 5px 15px rgba(0, 0, 0, 0.8);
+}
+
+/* 풀 스타일 */
+.grass {
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  height: 10px;
+  pointer-events: none;
+}
+
+.grass-blade {
+  position: absolute;
+  bottom: 0;
+  width: 8px;
+  height: 15px;
+  background: linear-gradient(to top, #2d5016 0%, #4a7c2c 100%);
+  border-radius: 50% 50% 0 0;
+}
+
+/* 두더지 스타일 */
+.mole {
+  width: 60px;
+  height: 70px;
+  position: absolute;
+  bottom: -70px;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: bottom 0.25s ease-out;
+  cursor: pointer;
+}
+
+.mole.visible {
+  bottom: -8px;
+  opacity: 1; /* ✅ 등장하면 보이게 */
+  pointer-events: auto; /* ✅ 등장하면 클릭 가능 */
+}
+.mole.visible.low {
+  bottom: -5px;
+}
+.mole.visible.mid {
+  bottom: 5px;
+}
+.mole.visible.high {
+  bottom: 20px;
+}
+
+.mole.hit {
+  animation: moleHit 0.3s ease-out forwards;
+}
+
+@keyframes moleHit {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    transform: translateX(-50%) scale(0.8) rotate(10deg);
+  }
+  100% {
+    transform: translateX(-50%) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* 두더지 얼굴 */
+.mole-face {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #8b4513 0%, #6b3410 100%);
+  border-radius: 50% 50% 45% 45%;
+  position: relative;
+  box-shadow: inset 0 -10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* 두더지 눈 */
+.mole-eye {
+  width: 8px;
+  height: 8px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 25px;
+}
+
+.mole-eye.left {
+  left: 16px;
+}
+
+.mole-eye.right {
+  right: 16px;
+}
+
+/* 두더지 코 */
+.mole-nose {
+  width: 12px;
+  height: 10px;
+  background: #cd853f;
+  border-radius: 50%;
+  position: absolute;
+  top: 35px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 두더지 입 */
+.mole-mouth {
+  width: 20px;
+  height: 10px;
+  border: 2px solid #000;
+  border-top: none;
+  border-radius: 0 0 50% 50%;
+  position: absolute;
+  top: 42px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 두더지 수염 */
+.mole-whisker {
+  width: 15px;
+  height: 1px;
+  background: #000;
+  position: absolute;
+  top: 32px;
+}
+
+.mole-whisker.left1 {
+  left: 2px;
+  transform: rotate(-15deg);
+}
+
+.mole-whisker.left2 {
+  left: 0;
+  top: 37px;
+  transform: rotate(-5deg);
+}
+
+.mole-whisker.right1 {
+  right: 2px;
+  transform: rotate(15deg);
+}
+
+.mole-whisker.right2 {
+  right: 0;
+  top: 37px;
+  transform: rotate(5deg);
+}
+
+/* 모달 스타일 */
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px 80px;
+  border-radius: 30px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#startModal {
+  z-index: 9999;
+  pointer-events: auto;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal h1 {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.modal p {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.modal .sub-text {
+  font-size: 20px;
+  color: #666;
+}
+
+.modal.start h1 {
+  color: #333;
+}
+
+.modal.gameover h1 {
+  color: #ff4444;
+}
+
+.final-score {
+  font-size: 36px;
+  color: #333;
+  font-weight: bold;
+}
