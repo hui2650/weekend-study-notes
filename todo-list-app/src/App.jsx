@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useReducer, useCallback } from 'react'
+import { useRef, useReducer, useCallback, createContext, useMemo } from 'react'
 import Editer from './components/Editer'
 import Header from './components/Header'
 import List from './components/List'
@@ -28,13 +28,16 @@ function reducer(state, action) {
   }
 }
 
+export const TodoStateContext = createContext()
+export const TodoDispatchContext = createContext()
+
 function App() {
   const [todos, dispatch] = useReducer(reducer, mockData)
 
   // const [todos, setTodos] = useState(mockData)
   const idRef = useRef(3)
 
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     dispatch({
       type: 'CREATE',
       data: {
@@ -44,9 +47,9 @@ function App() {
         date: new Date().getTime(),
       },
     })
-  }
+  }, [])
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     // todos State의 값들 중에
     // targetId와 일치하는 id를 갖는 투두 아이템의 isDone 변경
 
@@ -55,29 +58,29 @@ function App() {
       type: 'UPDATE',
       targetId: targetId,
     })
-  }
+  }, [])
 
-  const onDelete = (targetId) => {
-    // 인수: todoos 배열에서 targetId와 일치하는 id를 갖는 요소만 삭제한 새로운 배열
-    dispatch({
-      type: 'DELETE',
-      targetId: targetId,
-    })
-  }
-
-  useCallback(() => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: 'DELETE',
       targetId: targetId,
     })
   }, [])
 
+  const memorizedDispatch = useMemo(() => {
+    return { onCreate, onUpdate, onDelete }
+  }, [])
+
   return (
     <>
       <div className="App">
         <Header />
-        <Editer onCreate={onCreate} />
-        <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
+        <TodoStateContext.Provider value={todos}>
+          <TodoDispatchContext.Provider value={memorizedDispatch}>
+            <Editer />
+            <List />
+          </TodoDispatchContext.Provider>
+        </TodoStateContext.Provider>
       </div>
     </>
   )
