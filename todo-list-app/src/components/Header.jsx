@@ -1,4 +1,5 @@
 import './Header.css'
+import { memo } from 'react'
 
 const Header = () => {
   return (
@@ -9,4 +10,8 @@ const Header = () => {
   )
 }
 
-export default Header
+// const memorizedHeader = memo(Header)
+
+// export default memorizedHeader
+
+export default memo(Header)

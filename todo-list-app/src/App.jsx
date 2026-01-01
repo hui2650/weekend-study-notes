@@ -1,5 +1,5 @@
 import './App.css'
-import { useRef, useReducer } from 'react'
+import { useRef, useReducer, useCallback } from 'react'
 import Editer from './components/Editer'
 import Header from './components/Header'
 import List from './components/List'
@@ -64,6 +64,13 @@ function App() {
       targetId: targetId,
     })
   }
+
+  useCallback(() => {
+    dispatch({
+      type: 'DELETE',
+      targetId: targetId,
+    })
+  }, [])
 
   return (
     <>
