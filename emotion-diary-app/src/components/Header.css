@@ -5,11 +5,9 @@
   padding: 20px 0;
   border-bottom: 1px solid rgb(226, 226, 226);
 }
-
 .Header > div {
   display: flex;
 }
-
 .Header .header_center {
   width: 50%;
   font-size: 25px;
