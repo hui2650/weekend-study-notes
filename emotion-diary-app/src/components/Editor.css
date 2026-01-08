@@ -5,7 +5,6 @@
   font-size: 22px;
   font-weight: bold;
 }
-
 .Editor > section > input,
 textarea {
   background-color: rgb(236, 236, 236);
@@ -14,7 +13,6 @@ textarea {
   font-size: 20px;
   padding: 10px 20px;
 }
-
 .Editor > section > textarea {
   padding: 20px;
   width: 100%;
@@ -22,13 +20,11 @@ textarea {
   resize: vertical;
   box-sizing: border-box;
 }
-
 .Editor .emotion_section .emotion_list_wrapper {
   display: flex;
   justify-content: space-around;
   gap: 2%;
 }
-
 .Editor .button_section {
   display: flex;
   justify-content: space-between;
