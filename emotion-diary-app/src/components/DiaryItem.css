@@ -6,7 +6,6 @@
   padding: 15px 0;
   border-bottom: 1px solid rgb(236, 236, 236);
 }
-
 /* 이미지 섹션 스타일 */
 .DiaryItem .img_section {
   min-width: 120px;
@@ -16,11 +15,9 @@
   cursor: pointer;
   border-radius: 5px;
 }
-
 .DiaryItem .img_section > img {
   width: 50%;
 }
-
 /* 이미지 번호에 따라 배경색상을 다르게 지정 */
 .DiaryItem .img_section_1 {
   background-color: rgb(100, 201, 100);
@@ -37,7 +34,6 @@
 .DiaryItem .img_section_5 {
   background-color: rgb(253, 86, 95);
 }
-
 /* 일기 내용 스타일 */
 .DiaryItem .info_section {
   flex: 1;
