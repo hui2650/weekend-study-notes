@@ -46,13 +46,9 @@ const DiaryList = ({ data }) => {
   return (
     <div className="DiaryList">
       <div className="menu_bar">
-        <select name="" id="">
-          <option onChange={onChangeSortType} value={"latest"}>
-            최신순
-          </option>
-          <option onChange={onChangeSortType} value={"oldest"}>
-            오래된 순
-          </option>
+        <select onChange={onChangeSortType} name="" id="">
+          <option value={"latest"}>최신순</option>
+          <option value={"oldest"}>오래된 순</option>
         </select>
         <Button
           // 클릭시 새 일기 작성하는 /new 로 이동
