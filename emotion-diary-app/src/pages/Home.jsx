@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Button from '../components/Button'
 import DiaryList from '../components/DiaryList'
 import { DiaryStateContext } from '../App'
+import usePageTitle from '../../hooks/usePageTitle'
 
 const getMonthlyData = (pivotDate, data) => {
   // 이 달의 시작
@@ -36,6 +37,9 @@ const getMonthlyData = (pivotDate, data) => {
 const Home = () => {
   const data = useContext(DiaryStateContext)
   const [pivotDate, setPivotDate] = useState(new Date())
+
+  // title
+  usePageTitle('감정일기장')
 
   // 필터링된 월별 데이터를 변수로 저장 (DiaryList에 data로 전달)
   const monthlyData = getMonthlyData(pivotDate, data)
