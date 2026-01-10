@@ -1,15 +1,19 @@
-import Button from "../components/Button";
-import Editor from "../components/Editor";
-import Header from "../components/Header";
-import { useContext } from "react";
-import { DiaryDispatchContext } from "../App";
+import Button from '../components/Button'
+import Editor from '../components/Editor'
+import Header from '../components/Header'
+import { useContext, useEffect } from 'react'
+import { DiaryDispatchContext } from '../App'
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
+import usePageTitle from '../../hooks/usePageTitle'
 
 const New = () => {
-  const nav = useNavigate();
+  const nav = useNavigate()
 
-  const { onCreate } = useContext(DiaryDispatchContext);
+  // title
+  usePageTitle('새 일기 쓰기')
+
+  const { onCreate } = useContext(DiaryDispatchContext)
 
   const onSubmit = (input) => {
     onCreate(
@@ -17,21 +21,21 @@ const New = () => {
       input.createdDate.getTime(),
       input.emotionId,
       input.content
-    );
+    )
     // 뒤로가기 방지
-    nav("/", { replace: true });
-  };
+    nav('/', { replace: true })
+  }
 
   return (
     <div className="New">
       <Header
-        title={"새 일기 쓰기"}
+        title={'새 일기 쓰기'}
         // nav 안에 매개변수로 -1을 전달하게 되면, 이전 페이지로 이동하게 된다
-        leftChild={<Button onClick={() => nav(-1)} text={"< 뒤로가기"} />}
+        leftChild={<Button onClick={() => nav(-1)} text={'< 뒤로가기'} />}
       />
       <Editor onSubmit={onSubmit} />
     </div>
-  );
-};
+  )
+}
 
-export default New;
+export default New
