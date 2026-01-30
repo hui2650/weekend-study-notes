@@ -12,6 +12,7 @@ const Diary = () => {
   console.log(params)
 
   usePageTitle(`${params.id}번 일기`)
+  
 
   const curDiaryItem = useDiary(params.id)
 
