@@ -12,15 +12,15 @@
 // 3) 결과 렌더
 // items가 채워지면 ResultStage가 Carousel로 렌더
 
-import './App.css'
-import Home from './pages/Home'
+import "./App.css";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Home />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
